@@ -1,0 +1,25 @@
+.cell {
+    min-height: 5vmin;
+    min-width: 5vmin;
+    margin: 0.2vmin 0.2vmin;
+    border-radius: 1vmin;
+    border: none;
+}
+
+.hidden {
+    background-color: dimgrey;
+}
+
+.bomb {
+    background-color: red;
+}
+
+.flagged {
+    background-color: aquamarine;
+}
+
+.field {
+    padding: 1vmin;
+    background-color: white;
+    border-radius: 2vmin;
+}
