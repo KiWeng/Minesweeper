@@ -1,23 +1,25 @@
 import React from 'react'
-import ReactDom from 'react-dom'
 import Cell from "./Cell";
 
 function Row(props) {
-    let numbers = []
-    for (let i = 0; i < props.length; i++) {
-        numbers.push(i)
-    }
+    // let numbers = []
+    // for (let i = 0; i < props.length; i++) {
+    //     numbers.push(i)
+    // }
 
-    const listItems = numbers.map(number => React.createElement(Cell))
+    console.log(props.minePos)
+    const listItems = []
+    for (let i = 0; i < props.length; i++) {
+        listItems.push(React.createElement(Cell, {
+                rowPos: props.rowPos,
+                colPos: i,
+                mine: props.mineInRow
+            })
+        )
+    }
 
     return (
         <div className="row">
-            {/*<cell />*/}
-            {/*<Cell />*/}
-            {/*<Cell />*/}
-            {/*<Cell />*/}
-            {/*<Cell />*/}
-            {/*<Cell />*/}
             {listItems}
         </div>
     )

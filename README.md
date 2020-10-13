@@ -1,3 +1,11 @@
+# Minesweeper
+
+This project is based on the JavaScript  project on Hyper Skill, and the project is currently under construction.
+
+Text below is the auto-generated readme file of React.
+
+-----------------------------
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

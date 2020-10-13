@@ -10,12 +10,16 @@
     background-color: dimgrey;
 }
 
-.bomb {
+.bombed {
     background-color: red;
 }
 
 .flagged {
     background-color: aquamarine;
+}
+
+.cleared {
+    background-color: limegreen;
 }
 
 .field {
