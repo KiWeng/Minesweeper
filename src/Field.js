@@ -1,9 +1,11 @@
 import React from 'react'
 import Row from "./Row";
 
+
 function Field(props) {
     let listItems = []
     for (let i = 0; i < props.rowCount; i++) {
+        console.log(props.minePos.length)
         listItems.push(Row({
                 length: props.colCount,
                 rowPos: i,
@@ -13,7 +15,10 @@ function Field(props) {
     }
     return (
         <div className="field">
-            {listItems}
+            {
+                listItems
+                // props.minePos[1][1].toString()
+            }
         </div>
     )
 

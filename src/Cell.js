@@ -10,15 +10,20 @@ class Cell extends React.Component {
     }
 
     click(event) {
-        if (this.state.value !== 'hidden')
+        if (event.button === 2) {
+            if (this.state.value === 'hidden') {
+                this.setState({value: 'flagged'})
+                this.cellClass = 'cell flagged'
+            } else if (this.state.value === 'flagged') {
+                this.setState({value: 'hidden'})
+                this.cellClass = 'cell'
+            }
+        } else if (this.state.value !== 'hidden')
             return
-        if (event.button === 0 && this.mine) {
+        if (event.button === 0 && !this.mine) {
             this.setState({value: 'cleared'})
             this.cellClass = 'cell cleared'
-        } else if (event.button === 2 && this.mine) {
-            this.setState({value: 'flagged'})
-            this.cellClass = 'cell flagged'
-        } else {
+        } else if (event.button === 0 && this.mine) {
             this.setState({value: 'bombed'})
             this.cellClass = 'cell bombed'
         }
@@ -30,6 +35,9 @@ class Cell extends React.Component {
                 className={this.cellClass}
                 onMouseDown={(event) => this.click(event)}
             >
+                {
+                    this.mine.toString()
+                }
             </button>
         )
     }

@@ -13,14 +13,17 @@ function Row(props) {
         listItems.push(React.createElement(Cell, {
                 rowPos: props.rowPos,
                 colPos: i,
-                mine: props.mineInRow
+                mine: props.mineInRow[i]
             })
         )
     }
 
     return (
         <div className="row">
-            {listItems}
+            {
+                listItems
+                // props.mineInRow.toString()
+            }
         </div>
     )
 }
