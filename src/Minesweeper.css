@@ -6,20 +6,25 @@
     border: none;
 }
 
-.hidden {
+.closed {
     background-color: dimgrey;
 }
 
 .bombed {
     background-color: red;
+    background-image: url("fired.svg");
+    background-size: 5vmin 5vmin;
 }
 
 .flagged {
     background-color: aquamarine;
+    background-image: url("target.svg");
+    background-size: 5vmin 5vmin;
 }
 
-.cleared {
+.opened {
     background-color: limegreen;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .field {

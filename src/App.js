@@ -7,11 +7,11 @@ import Panel from "./Panel";
 class App extends React.Component {
     constructor(props) {
         super(props);
-        document.addEventListener(
-            'contextmenu', event => event.preventDefault()
-        )
-        this.rowCount = 5;
-        this.colCount = 5;
+        // document.addEventListener(
+        //     'contextmenu', event => event.preventDefault()
+        // )
+        this.rowCount = 9;
+        this.colCount = 8;
         this.minePos = []
         for (let i = 0; i < this.rowCount; i++) {
             this.minePos.push([])
