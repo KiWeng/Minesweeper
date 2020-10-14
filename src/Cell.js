@@ -11,18 +11,6 @@ class Cell extends React.Component {
         this.mine = props.mine
     }
 
-    // click(event) {
-    //     if (event.button === 2) {
-    //         if (this.state.value === 'closed') {
-    //             this.setState({value: 'flagged'})
-    //             this.cellClass = 'cell flagged'
-    //         } else if (this.state.value === 'flagged') {
-    //             this.setState({value: 'closed'})
-    //             this.cellClass = 'cell'
-    //         }
-    //     } else
-    // }
-
     handleClick() {
         if (this.state.value !== 'closed' && this.state.value !== 'flagged')
             return
@@ -55,9 +43,7 @@ class Cell extends React.Component {
                 onClick={this.handleClick}
                 onContextMenu={this.handleContextmenu}
             >
-                {
-                    this.mine.toString()
-                }
+                <span className={"mine-text-" + this.cellClass}>{this.mine.toString()}</span>
             </button>
         )
     }

@@ -7,10 +7,6 @@
 }
 
 .closed {
-    display: none;
-}
-
-.closed {
     background-color: dimgrey;
 }
 
