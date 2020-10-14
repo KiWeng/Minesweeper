@@ -25,8 +25,6 @@ class App extends React.Component {
         for (const moveKey of move) {
             let ni = moveKey[0] + i
             let nj = moveKey[1] + j
-            console.log(moveKey[0])
-            console.log(moveKey[1])
             if (ni < 0 || ni >= this.rowCount)
                 continue
             if (nj < 0 || nj >= this.colCount)

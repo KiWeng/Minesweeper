@@ -7,7 +7,6 @@ function Row(props) {
     //     numbers.push(i)
     // }
 
-    console.log(props.minePos)
     const listItems = []
     for (let i = 0; i < props.length; i++) {
         listItems.push(React.createElement(Cell, {
