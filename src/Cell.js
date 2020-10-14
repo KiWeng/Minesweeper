@@ -26,10 +26,10 @@ class Cell extends React.Component {
     handleClick() {
         if (this.state.value !== 'closed' && this.state.value !== 'flagged')
             return
-        if (!this.mine) {
+        if (this.mine !== -1) {
             this.setState({value: 'opened'})
             this.cellClass = 'cell opened'
-        } else if (this.mine) {
+        } else if (this.mine === -1) {
             this.setState({value: 'bombed'})
             this.cellClass = 'cell bombed'
         }
