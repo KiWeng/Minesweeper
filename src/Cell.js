@@ -9,7 +9,7 @@ class Cell extends React.Component {
         this.state = {value: this.props.cellState}
         this.cellClass = 'cell'
         this.mine = props.mine
-        console.log(props.rowPos, props.colPos)
+        // console.log(props.rowPos, props.colPos)
     }
 
     handleClick() {
@@ -44,7 +44,7 @@ class Cell extends React.Component {
         if (this.state.value !== "opened" && this.props.cellState === "opened") {
             this.setState({value: "opened"})
             this.cellClass = 'cell opened'
-            console.log("jiba", this.props.rowPos, this.props.colPos)
+            // console.log("jiba", this.props.rowPos, this.props.colPos)
         }
         return (
             <button

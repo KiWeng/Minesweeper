@@ -26,8 +26,13 @@ class Field extends React.Component {
         if (type === "opened" && this.minePos[i][j] === 0) {
             this.revealSafeZone(i, j)
         }
-        console.log(i, j, type)
-        // this.render()
+        if (type === "flagged") {
+            this.props.updateGameStatus(false, this.props.flagCount - 1)
+        }
+        if (type === "bombed") {
+            this.props.updateGameStatus(true, this.props.flagCount)
+        }
+        console.log(type);
     }
 
     revealSafeZone(i, j) {
@@ -54,19 +59,11 @@ class Field extends React.Component {
                     if (this.minePos[ni][nj] === 0) {
                         queue.push([ni, nj])
                     }
-                    console.log(ni, nj)
+                    // console.log(ni, nj)
                 }
             }
         }
         this.setState({state: tmp})
-        // for (let x in tmp) {
-        //     for (let y in tmp[x]) {
-        //         console.log(tmp[x][y], x, y)
-        //     }
-        //     console.log('\n')
-        // }
-        this.render()
-
     }
 
     adjacentMineCount(i, j) {
@@ -118,7 +115,8 @@ class Field extends React.Component {
     }
 
     render() {
-        console.log("Field is rendering")
+        // console.log("Field is rendering")
+        console.log("field", this.props.flagCount)
         let listItems = []
         for (let i = 0; i < this.rowCount; i++) {
             listItems.push(Row({

@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDom from 'react-dom'
 
 class Timer extends React.Component {
     constructor(props) {
@@ -19,9 +18,12 @@ class Timer extends React.Component {
     }
 
     tick() {
-        this.setState({
-            date: new Date()
-        });
+        console.log(this.props.isEnded);
+        if (!this.props.isEnded) {
+            this.setState({
+                date: new Date()
+            });
+        }
     }
 
     render() {

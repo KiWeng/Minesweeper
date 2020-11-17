@@ -5,7 +5,7 @@ function Row(props) {
 
     const listItems = []
     for (let i = 0; i < props.length; i++) {
-        console.log(props.rowStates[i], i, props.rowPos)
+        // console.log(props.rowStates[i], i, props.rowPos)
 
 
         listItems.push(React.createElement(Cell, {
@@ -18,7 +18,7 @@ function Row(props) {
         )
     }
 
-    console.log("rendering row ", props.rowPos)
+    // console.log("rendering row ", props.rowPos)
     return (
         <div className="row">
             {
