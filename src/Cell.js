@@ -36,6 +36,7 @@ class Cell extends React.Component {
 
     render() {
         this.setUp()
+        // console.log(this.props.cellState);
         return (
             <button
                 className={this.cellClass}

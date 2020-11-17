@@ -8,6 +8,8 @@ class Field extends React.Component {
         this.rowCount = 9;
         this.colCount = 8
         this.updateMineStates = this.updateMineStates.bind(this)
+        this.cellClicked = this.cellClicked.bind(this)
+        this.cellContextMenu = this.cellContextMenu.bind(this)
         this.setUpMines();
         let posState = []
         for (let i = 0; i < this.rowCount; i++) {
@@ -20,7 +22,8 @@ class Field extends React.Component {
     }
 
     cellClicked(i, j) {
-        if (this.state.state[i][j] === 'closed' && this.state.state[i][j] !== 'flagged') {
+        console.log(i, j);
+        if (this.state.state[i][j] === 'opened') {
             return
         }
         if (this.minePos[i][j] !== -1) {
@@ -56,8 +59,8 @@ class Field extends React.Component {
         }
         if (type === "bombed") {
             this.props.updateGameStatus(true, this.props.flagCount)
+            console.log("bombed");
         }
-        console.log(type);
     }
 
     revealSafeZone(i, j) {
