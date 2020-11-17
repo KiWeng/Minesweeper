@@ -1,9 +1,11 @@
 .cell {
     min-height: 5vmin;
     min-width: 5vmin;
-    margin: 0.2vmin 0.2vmin;
+    margin: 0.3vmin 0.3vmin;
     border-radius: 1vmin;
     border: none;
+    vertical-align: middle;
+    font-size: 2vmin;
 }
 
 .closed {
@@ -22,13 +24,29 @@
     background-size: 5vmin 5vmin;
 }
 
+.mine-text-bombed {
+    visibility: hidden;
+}
+
+.mine-text-closed {
+    visibility: hidden;
+}
+
+.mine-text-bombed {
+    display: none;
+}
+
 .opened {
     background-color: limegreen;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /*box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
 }
 
 .field {
     padding: 1vmin;
     background-color: white;
     border-radius: 2vmin;
+}
+
+.row {
+
 }
