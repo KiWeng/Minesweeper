@@ -9,43 +9,33 @@ class Cell extends React.Component {
         this.state = {value: this.props.cellState}
         this.cellClass = 'cell'
         this.mine = props.mine
-        // console.log(props.rowPos, props.colPos)
     }
 
     handleClick() {
-        if (this.state.value !== 'closed' && this.state.value !== 'flagged')
-            return
-        if (this.mine !== -1) {
-            this.setState({value: 'opened'})
-            this.cellClass = 'cell opened'
-            this.props.handleChange(this.props.rowPos, this.props.colPos, "opened");
-        } else if (this.mine === -1) {
-            this.setState({value: 'bombed'})
-            this.cellClass = 'cell bombed'
-            this.props.handleChange(this.props.rowPos, this.props.colPos, "bombed");
-        }
+        this.props.cellClicked(this.props.rowPos, this.props.colPos)
     }
 
     handleContextmenu(e) {
         e.preventDefault();
-        if (this.state.value === 'closed' && this.props.flagCount) {
-            this.setState({value: 'flagged'})
-            this.cellClass = 'cell flagged'
-            this.props.handleChange(this.props.rowPos, this.props.colPos, "flagged");
+        this.props.cellContextMenu(this.props.rowPos, this.props.colPos)
+    }
+
+    setUp() {
+        if (this.state.value !== this.props.cellState) {
+            this.setState({value: this.props.cellState})
+        }
+        if (this.state.value === 'opened') {
+            this.cellClass = 'cell opened'
         } else if (this.state.value === 'flagged') {
-            this.setState({value: 'closed'})
-            this.cellClass = 'cell'
-            this.props.handleChange(this.props.rowPos, this.props.colPos, "closed");
+            this.cellClass = 'cell flagged'
+        } else if (this.state.value === 'bombed') {
+            this.cellClass = 'cell bombed'
         }
     }
 
 
     render() {
-        if (this.state.value !== "opened" && this.props.cellState === "opened") {
-            this.setState({value: "opened"})
-            this.cellClass = 'cell opened'
-            // console.log("jiba", this.props.rowPos, this.props.colPos)
-        }
+        this.setUp()
         return (
             <button
                 className={this.cellClass}

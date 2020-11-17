@@ -9,14 +9,33 @@ class Field extends React.Component {
         this.colCount = 8
         this.updateMineStates = this.updateMineStates.bind(this)
         this.setUpMines();
-        let clickedPos = []
+        let posState = []
         for (let i = 0; i < this.rowCount; i++) {
-            clickedPos.push([])
+            posState.push([])
             for (let j = 0; j < this.colCount; j++) {
-                clickedPos[i].push("closed")
+                posState[i].push("closed")
             }
         }
-        this.state = {state: clickedPos}
+        this.state = {state: posState}
+    }
+
+    cellClicked(i, j) {
+        if (this.state.state[i][j] === 'closed' && this.state.state[i][j] !== 'flagged') {
+            return
+        }
+        if (this.minePos[i][j] !== -1) {
+            this.updateMineStates(i, j, "opened")
+        } else if (this.minePos[i][j] === -1) {
+            this.updateMineStates(i, j, "bombed")
+        }
+    }
+
+    cellContextMenu(i, j) {
+        if (this.state.state[i][j] === 'closed' && this.props.flagCount) {
+            this.updateMineStates(i, j, 'flagged')
+        } else if (this.state.state[i][j] === 'flagged') {
+            this.updateMineStates(i, j, 'closed')
+        }
     }
 
     updateMineStates(i, j, type) {
@@ -31,6 +50,9 @@ class Field extends React.Component {
         }
         if (type === "flagged") {
             this.props.updateGameStatus(false, this.props.flagCount - 1)
+        }
+        if (type === "closed") {
+            this.props.updateGameStatus(false, this.props.flagCount + 1)
         }
         if (type === "bombed") {
             this.props.updateGameStatus(true, this.props.flagCount)
@@ -62,7 +84,6 @@ class Field extends React.Component {
                     if (this.minePos[ni][nj] === 0) {
                         queue.push([ni, nj])
                     }
-                    // console.log(ni, nj)
                 }
             }
         }
@@ -118,17 +139,15 @@ class Field extends React.Component {
     }
 
     render() {
-        // console.log("Field is rendering")
-        console.log("field", this.props.flagCount)
         let listItems = []
         for (let i = 0; i < this.rowCount; i++) {
             listItems.push(Row({
                     length: this.colCount,
                     rowPos: i,
-                    mineInRow: this.minePos[i],
+                    cellClicked: this.cellClicked,
                     rowStates: this.state.state[i],
-                    handleChange: this.updateMineStates,
-                    flagCount: this.props.flagCount
+                    cellContextMenu: this.cellContextMenu,
+                    mineInRow: this.minePos[i]
                 })
             )
         }

@@ -5,21 +5,19 @@ function Row(props) {
 
     const listItems = []
     for (let i = 0; i < props.length; i++) {
-        // console.log(props.rowStates[i], i, props.rowPos)
-
 
         listItems.push(React.createElement(Cell, {
                 rowPos: props.rowPos,
                 colPos: i,
-                mine: props.mineInRow[i],
                 cellState: props.rowStates[i],
                 handleChange: props.handleChange,
-                flagCount: props.flagCount
+                cellClicked: props.cellClicked,
+                cellContextMenu: props.cellContextMenu,
+                mine: props.mineInRow[i]
             })
         )
     }
 
-    // console.log("rendering row ", props.rowPos)
     return (
         <div className="row">
             {
