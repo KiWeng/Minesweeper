@@ -13,7 +13,8 @@ function Row(props) {
                 colPos: i,
                 mine: props.mineInRow[i],
                 cellState: props.rowStates[i],
-                handleChange: props.handleChange
+                handleChange: props.handleChange,
+                flagCount: props.flagCount
             })
         )
     }

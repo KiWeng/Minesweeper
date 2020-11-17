@@ -23,8 +23,11 @@ class Field extends React.Component {
         let tmp = this.state.state;
         tmp[i][j] = type;
         this.setState({state: tmp})
-        if (type === "opened" && this.minePos[i][j] === 0) {
-            this.revealSafeZone(i, j)
+        if (type === "opened") {
+            this.props.updateGameStatus(false, this.props.flagCount)
+            if (this.minePos[i][j] === 0) {
+                this.revealSafeZone(i, j)
+            }
         }
         if (type === "flagged") {
             this.props.updateGameStatus(false, this.props.flagCount - 1)
@@ -124,7 +127,8 @@ class Field extends React.Component {
                     rowPos: i,
                     mineInRow: this.minePos[i],
                     rowStates: this.state.state[i],
-                    handleChange: this.updateMineStates
+                    handleChange: this.updateMineStates,
+                    flagCount: this.props.flagCount
                 })
             )
         }

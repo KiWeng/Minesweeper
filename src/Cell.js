@@ -28,7 +28,7 @@ class Cell extends React.Component {
 
     handleContextmenu(e) {
         e.preventDefault();
-        if (this.state.value === 'closed') {
+        if (this.state.value === 'closed' && this.props.flagCount) {
             this.setState({value: 'flagged'})
             this.cellClass = 'cell flagged'
             this.props.handleChange(this.props.rowPos, this.props.colPos, "flagged");

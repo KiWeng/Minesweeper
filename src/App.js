@@ -7,9 +7,7 @@ import Panel from "./Panel";
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.isEnded = false
-        this.isStarted = false
-        this.state = {flagCount: 10, isEnded: false}
+        this.state = {flagCount: 10, isEnded: true}
         this.updateGameStatus = this.updateGameStatus.bind(this)
     }
 
