@@ -18,11 +18,20 @@ class Field extends React.Component {
                 posState[i].push("closed")
             }
         }
-        this.state = {state: posState}
+        this.state = {state: posState, isOver: false, isStart: false}
+        this.flagCount = 10;
+        this.mineCount = 10;
     }
 
     cellClicked(i, j) {
-        console.log(i, j);
+        // console.log(i, j);
+        if (this.state.isStart === false) {
+            while (this.minePos[i][j] === -1) {
+                this.setUpMines();
+            }
+            this.setState({isStart: true})
+        }
+
         if (this.state.state[i][j] === 'opened') {
             return
         }
@@ -30,6 +39,7 @@ class Field extends React.Component {
             this.updateMineStates(i, j, "opened")
         } else if (this.minePos[i][j] === -1) {
             this.updateMineStates(i, j, "bombed")
+
         }
     }
 
@@ -42,24 +52,35 @@ class Field extends React.Component {
     }
 
     updateMineStates(i, j, type) {
+        console.log(this.state.state[i][j], type)
+        if (this.state.isOver === true)
+            return;
+        if (this.state.state[i][j] === 'flagged' && type === 'opened') {
+            this.props.updateGameStatus(false, this.props.flagCount + 1)
+        }
         let tmp = this.state.state;
         tmp[i][j] = type;
         this.setState({state: tmp})
         if (type === "opened") {
-            this.props.updateGameStatus(false, this.props.flagCount)
             if (this.minePos[i][j] === 0) {
                 this.revealSafeZone(i, j)
             }
         }
         if (type === "flagged") {
             this.props.updateGameStatus(false, this.props.flagCount - 1)
+            if (this.minePos[i][j] === -1) {
+                if (++this.mineCount === 10) {
+                    this.props.updateGameStatus(true, this.props.flagCount)
+                    this.setState({isOver: true})
+                }
+            }
         }
         if (type === "closed") {
             this.props.updateGameStatus(false, this.props.flagCount + 1)
         }
         if (type === "bombed") {
             this.props.updateGameStatus(true, this.props.flagCount)
-            console.log("bombed");
+            this.setState({isOver: true})
         }
     }
 
@@ -143,7 +164,9 @@ class Field extends React.Component {
 
     render() {
         let listItems = []
+        console.log(this.minePos[0][0]);
         for (let i = 0; i < this.rowCount; i++) {
+            console.log("updating");
             listItems.push(Row({
                     length: this.colCount,
                     rowPos: i,

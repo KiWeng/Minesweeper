@@ -30,13 +30,16 @@ class Cell extends React.Component {
             this.cellClass = 'cell flagged'
         } else if (this.state.value === 'bombed') {
             this.cellClass = 'cell bombed'
+        } else {
+            this.cellClass = 'cell'
         }
     }
 
 
     render() {
+        console.log(this.mine);
         this.setUp()
-        // console.log(this.props.cellState);
+        // console.log(this.cellClass, this.props.rowPos, this.props.colPos);
         return (
             <button
                 className={this.cellClass}
