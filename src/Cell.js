@@ -6,9 +6,11 @@ class Cell extends React.Component {
         super(props);
         this.handleContextmenu = this.handleContextmenu.bind(this)
         this.handleClick = this.handleClick.bind(this)
-        this.state = {value: this.props.cellState}
-        this.cellClass = 'cell'
-        this.mine = props.mine
+        this.state = {
+            value: this.props.cellState,
+            cellClass: "cell",
+            mineCount: 0
+        }
     }
 
     handleClick() {
@@ -20,34 +22,41 @@ class Cell extends React.Component {
         this.props.cellContextMenu(this.props.rowPos, this.props.colPos)
     }
 
-    setUp() {
-        if (this.state.value !== this.props.cellState) {
-            this.setState({value: this.props.cellState})
-        }
-        if (this.state.value === 'opened') {
-            this.cellClass = 'cell opened'
-        } else if (this.state.value === 'flagged') {
-            this.cellClass = 'cell flagged'
-        } else if (this.state.value === 'bombed') {
-            this.cellClass = 'cell bombed'
-        } else {
-            this.cellClass = 'cell'
+    componentDidUpdate(prevProps) {
+        // console.log("didUpdate");
+        if (this.props.cellState !== prevProps.cellState) {
+            let value = this.state.value;
+            let cellClass;
+            if (value !== this.props.cellState) {
+                value = this.props.cellState;
+            }
+            if (value === 'opened') {
+                cellClass = 'cell opened'
+            } else if (value === 'flagged') {
+                cellClass = 'cell flagged'
+            } else if (value === 'bombed') {
+                cellClass = 'cell bombed'
+            } else {
+                cellClass = 'cell'
+            }
+            this.setState({
+                value: value,
+                cellClass: cellClass,
+                mineCount: this.props.mine
+            });
         }
     }
 
 
     render() {
-        console.log(this.mine);
-        this.setUp()
-        // console.log(this.cellClass, this.props.rowPos, this.props.colPos);
         return (
             <button
-                className={this.cellClass}
+                className={this.state.cellClass}
                 onClick={this.handleClick}
                 onContextMenu={this.handleContextmenu}
             >
                 <span className={"mine-text-" + this.state.value}>
-                    {this.mine !== 0 ? this.mine.toString() : ''}
+                    {this.state.mineCount !== 0 ? this.state.mineCount.toString() : ''}
                 </span>
             </button>
         )

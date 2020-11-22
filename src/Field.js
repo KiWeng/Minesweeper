@@ -52,7 +52,7 @@ class Field extends React.Component {
     }
 
     updateMineStates(i, j, type) {
-        console.log(this.state.state[i][j], type)
+        // console.log(this.state.state[i][j], type)
         if (this.state.isOver === true)
             return;
         if (this.state.state[i][j] === 'flagged' && type === 'opened') {
@@ -81,6 +81,15 @@ class Field extends React.Component {
         if (type === "bombed") {
             this.props.updateGameStatus(true, this.props.flagCount)
             this.setState({isOver: true})
+            let tmp = this.state.state;
+            for (i in this.minePos) {
+                for (j in this.minePos[i]) {
+                    if (this.minePos[i][j] === -1) {
+                        tmp[i][j] = 'bombed'
+                    }
+                }
+            }
+            this.setState({state: tmp})
         }
     }
 
@@ -164,9 +173,9 @@ class Field extends React.Component {
 
     render() {
         let listItems = []
-        console.log(this.minePos[0][0]);
+        // console.log(this.minePos[0][0]);
         for (let i = 0; i < this.rowCount; i++) {
-            console.log("updating");
+            // console.log("updating");
             listItems.push(Row({
                     length: this.colCount,
                     rowPos: i,

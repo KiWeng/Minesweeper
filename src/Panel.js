@@ -8,13 +8,17 @@ function FlagCounter(props) {
     )
 }
 
-function Reset() {
+function Reset(props) {
     return (
-        <button>reset</button>
+        <button
+            style={{cursor: "pointer"}}
+            onClick={props.handleReset}
+        >reset</button>
     )
 }
 
 class Panel extends React.Component {
+
     render() {
         return (
             <div>
@@ -26,7 +30,7 @@ class Panel extends React.Component {
                 </div>
                 <div>
                     <FlagCounter flagCount={this.props.flagCount}/>
-                    <Reset/>
+                    <Reset handleReset={this.props.handleReset}/>
                     <Timer isEnded={this.props.isEnded}/>
                 </div>
             </div>

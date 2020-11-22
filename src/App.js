@@ -14,9 +14,11 @@ class App extends React.Component {
     updateGameStatus(isEnded, flagCount) {
         this.setState({flagCount: flagCount, isEnded: isEnded})
         this.setState({flagCount: flagCount, isEnded: isEnded})
-        console.log("handler", this.state.isEnded)
-        // console.log(flagCount)
-        // console.log(this.state.flagCount)
+        // console.log("handler", this.state.isEnded)
+    }
+
+    handleReset() {
+        console.log("wocoanima");
     }
 
     render() {
@@ -26,6 +28,7 @@ class App extends React.Component {
                     <Panel
                         isEnded={this.state.isEnded}
                         flagCount={this.state.flagCount}
+                        handleReset={this.handleReset}
                     />
                     <Field
                         updateGameStatus={this.updateGameStatus}
