@@ -23,6 +23,22 @@ class Field extends React.Component {
         this.mineCount = 10;
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.doReset) {
+            this.setUpMines();
+            let posState = []
+            for (let i = 0; i < this.rowCount; i++) {
+                posState.push([])
+                for (let j = 0; j < this.colCount; j++) {
+                    posState[i].push("closed")
+                }
+            }
+            this.setState({state: posState, isOver: false, isStart: false})
+            this.flagCount = 10;
+            this.mineCount = 10;
+        }
+    }
+
     cellClicked(i, j) {
         // console.log(i, j);
         if (this.state.isStart === false) {
@@ -51,8 +67,8 @@ class Field extends React.Component {
         }
     }
 
+    //TODO: this method needs a serious clean up
     updateMineStates(i, j, type) {
-        // console.log(this.state.state[i][j], type)
         if (this.state.isOver === true)
             return;
         if (this.state.state[i][j] === 'flagged' && type === 'opened') {
@@ -65,6 +81,7 @@ class Field extends React.Component {
             if (this.minePos[i][j] === 0) {
                 this.revealSafeZone(i, j)
             }
+            this.props.updateGameStatus(false, this.props.flagCount)
         }
         if (type === "flagged") {
             this.props.updateGameStatus(false, this.props.flagCount - 1)

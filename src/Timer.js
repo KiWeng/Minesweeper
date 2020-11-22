@@ -3,8 +3,7 @@ import React from 'react'
 class Timer extends React.Component {
     constructor(props) {
         super(props);
-        this.startTime = 0
-        this.state = {currentTime: 0}
+        this.state = {startTime: 0, currentTime: 0}
     }
 
     componentDidMount() {
@@ -19,10 +18,11 @@ class Timer extends React.Component {
     }
 
     tick() {
-        // console.log(this.props.isEnded);
         if (!this.props.isEnded) {
-            if (this.startTime === 0) {
-                this.startTime = new Date().getTime();
+            if (this.state.startTime === 0) {
+                this.setState({
+                    startTime: new Date().getTime()
+                })
             }
             this.setState({
                 currentTime: new Date().getTime()
@@ -30,11 +30,17 @@ class Timer extends React.Component {
         }
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.doReset) {
+            this.setState({startTime: 0, currentTime: 0})
+        }
+    }
+
     render() {
-        let diff = this.state.currentTime - this.startTime
+        let diff = this.state.currentTime - this.state.startTime
         let minute = new Date(diff).getMinutes();
         let second = new Date(diff).getSeconds()
-        var s = ""
+        let s = "";
         if (second < 10) {
             s = "0"
         }

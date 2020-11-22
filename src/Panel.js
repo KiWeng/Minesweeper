@@ -18,6 +18,10 @@ function Reset(props) {
 }
 
 class Panel extends React.Component {
+    componentDidUpdate(prevProps) {
+        if (this.props.doReset !== prevProps.doReset) {
+        }
+    }
 
     render() {
         return (
@@ -31,7 +35,10 @@ class Panel extends React.Component {
                 <div>
                     <FlagCounter flagCount={this.props.flagCount}/>
                     <Reset handleReset={this.props.handleReset}/>
-                    <Timer isEnded={this.props.isEnded}/>
+                    <Timer
+                        isEnded={this.props.isEnded}
+                        doReset={this.props.doReset}
+                    />
                 </div>
             </div>
         )
