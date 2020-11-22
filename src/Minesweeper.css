@@ -24,7 +24,7 @@
     background-size: 5vmin 5vmin;
 }
 
-.mine-text-bombed {
+.mine-text-flagged {
     visibility: hidden;
 }
 
@@ -33,7 +33,7 @@
 }
 
 .mine-text-bombed {
-    display: none;
+    visibility: hidden;
 }
 
 .opened {
