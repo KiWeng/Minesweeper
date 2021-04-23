@@ -1,52 +1,54 @@
 .cell {
-    min-height: 5vmin;
-    min-width: 5vmin;
-    margin: 0.3vmin 0.3vmin;
-    border-radius: 1vmin;
-    border: none;
-    vertical-align: middle;
-    font-size: 2vmin;
+  height: 40px;
+  width: 40px;
+  margin: 2px 2px;
+  border-radius: 6px;
+  border: none;
+  vertical-align: middle;
 }
 
 .closed {
-    background-color: dimgrey;
+  background-color: dimgrey;
 }
 
 .bombed {
-    background-color: red;
-    background-image: url("fired.svg");
-    background-size: 5vmin 5vmin;
+  background: red url("fired.svg") no-repeat center;
+  background-size: 100% 100%;
 }
 
 .flagged {
-    background-color: aquamarine;
-    background-image: url("target.svg");
-    background-size: 5vmin 5vmin;
+  background: aquamarine url("target.svg") no-repeat center;
+  background-size: 100% 100%;
+}
+
+.mine-text-opened {
+  color: white;
 }
 
 .mine-text-flagged {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 .mine-text-closed {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 .mine-text-bombed {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 .opened {
-    background-color: limegreen;
-    /*box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+  background-color: limegreen;
+  /*box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
 }
 
 .field {
-    padding: 1vmin;
-    background-color: white;
-    border-radius: 2vmin;
+  padding: 8px;
+  background-color: white;
+  border-radius: 12px;
 }
 
 .row {
 
 }
+

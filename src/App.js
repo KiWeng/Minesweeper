@@ -3,6 +3,7 @@ import './App.css';
 import './Minesweeper.css'
 import Field from "./Field";
 import Panel from "./Panel";
+import 'antd/dist/antd.css'
 
 class App extends React.Component {
     constructor(props) {
@@ -30,12 +31,16 @@ class App extends React.Component {
         return (
             <div className="App">
                 <header className="App-header">
+            <div
+                        style={{margin: "16px"}}
+            >
                     <Panel
                         isEnded={this.state.isEnded}
                         flagCount={this.state.flagCount}
                         handleReset={this.handleReset}
                         doReset={this.state.doReset}
                     />
+            </div>
                     <Field
                         updateGameStatus={this.updateGameStatus}
                         flagCount={this.state.flagCount}

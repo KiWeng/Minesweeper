@@ -1,5 +1,6 @@
 import React from 'react'
 import './Minesweeper.css'
+import 'antd/dist/antd.css'
 
 class Cell extends React.Component {
     constructor(props) {

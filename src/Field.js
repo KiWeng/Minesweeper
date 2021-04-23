@@ -1,5 +1,6 @@
 import React from 'react'
 import Row from "./Row";
+import 'antd/dist/antd.css'
 
 
 class Field extends React.Component {

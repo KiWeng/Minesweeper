@@ -1,4 +1,5 @@
 import React from 'react'
+import { Statistic } from 'antd'
 
 class Timer extends React.Component {
     constructor(props) {
@@ -45,8 +46,12 @@ class Timer extends React.Component {
             s = "0"
         }
         return (
-            <span className="Timer">{minute}:{s + second}</span>
-        )
+            <Statistic
+                title={<div style={{ color: 'white'}}>Timer</div>}
+                valueStyle={{color: 'white'}}
+                value={'' + minute + ':' + s + second}
+            />
+        );
     }
 }
 
